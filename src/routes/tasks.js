@@ -1,14 +1,14 @@
 const router = require('express').Router();
 
-const TaskController = require('../controllers/tasks');
-const TaskValidation = require('../middlewares/tasks-validation');
+const TasksController = require('../controllers/tasks');
+const TasksValidation = require('../middlewares/tasks-validation');
 const MacAddressValidation = require('../middlewares/macaddress-validation');
 
-const taskController = new TaskController();
+const tasksController = new TasksController();
 
-router.post('/', TaskValidation, taskController.create);
-router.put('/:id', TaskValidation, taskController.update);
-router.get('/filter/all', MacAddressValidation, taskController.findAll);
-router.get('/:id', taskController.findOne);
+router.post('/', TasksValidation, tasksController.create);
+router.put('/:id', TasksValidation, tasksController.update);
+router.get('/filter/all', MacAddressValidation, tasksController.findAll);
+router.get('/:id', tasksController.findOne);
 
 module.exports = router;

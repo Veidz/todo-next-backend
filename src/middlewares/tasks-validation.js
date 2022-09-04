@@ -1,8 +1,8 @@
 const { isPast } = require('date-fns');
 
-const TaskModel = require('../models/tasks');
+const TasksModel = require('../models/tasks');
 
-const TaskValidation = async (req, res, next) => {
+const TasksValidation = async (req, res, next) => {
   const requiredFields = ['macaddress', 'type', 'title', 'description', 'when'];
 
   for (const field of requiredFields) {
@@ -17,7 +17,7 @@ const TaskValidation = async (req, res, next) => {
 
   let taskDateExists;
   if (req.params.id) {
-    taskDateExists = await TaskModel.findOne({
+    taskDateExists = await TasksModel.findOne({
       $and: [
         { _id: { $ne: req.params.id } },
         { when: new Date(req.body.when) },
@@ -25,7 +25,7 @@ const TaskValidation = async (req, res, next) => {
       ],
     });
   } else {
-    taskDateExists = await TaskModel.findOne({
+    taskDateExists = await TasksModel.findOne({
       $and: [
         { when: new Date(req.body.when) },
         { macaddress: req.body.macaddress },
@@ -40,4 +40,4 @@ const TaskValidation = async (req, res, next) => {
   return next();
 };
 
-module.exports = TaskValidation;
+module.exports = TasksValidation;

@@ -1,9 +1,8 @@
-const { Number } = require('../config/database');
 const mongoose = require('../config/database');
 
 const { Schema } = mongoose;
 
-const TaskSchema = new Schema({
+const TasksSchema = new Schema({
   macaddress: { type: String, required: true },
   type: { type: Number, required: true },
   title: { type: String, required: true },
@@ -13,4 +12,4 @@ const TaskSchema = new Schema({
   created: { type: Date, default: Date.now() },
 });
 
-module.exports = mongoose.model('Task', TaskSchema);
+module.exports = mongoose.model('Tasks', TasksSchema);

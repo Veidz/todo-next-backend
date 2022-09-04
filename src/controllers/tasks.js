@@ -1,6 +1,6 @@
 const TaskModel = require('../models/tasks');
 
-class TaskController {
+class TasksController {
   async create(req, res) {
     try {
       const task = new TaskModel(req.body);
@@ -46,4 +46,4 @@ class TaskController {
   }
 }
 
-module.exports = TaskController;
+module.exports = TasksController;
