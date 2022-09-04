@@ -1,9 +1,9 @@
-const TaskModel = require('../models/tasks');
+const TasksModel = require('../models/tasks');
 
 class TasksController {
   async create(req, res) {
     try {
-      const task = new TaskModel(req.body);
+      const task = new TasksModel(req.body);
       const response = await task.save();
       return res.status(201).json(response);
     } catch (error) {
@@ -13,7 +13,7 @@ class TasksController {
 
   async update(req, res) {
     try {
-      const response = await TaskModel.findByIdAndUpdate(
+      const response = await TasksModel.findByIdAndUpdate(
         { _id: req.params.id },
         req.body,
         { new: true },
@@ -26,7 +26,7 @@ class TasksController {
 
   async findAll(req, res) {
     try {
-      const response = await TaskModel.find({
+      const response = await TasksModel.find({
         macaddres: req.body.macaddres,
       }).sort('when');
       return res.status(200).json(response);
@@ -37,8 +37,18 @@ class TasksController {
 
   async findOne(req, res) {
     try {
-      const response = await TaskModel.findById(req.params.id);
+      const response = await TasksModel.findById(req.params.id);
       if (!response) return res.status(404).json({ error: 'Task not found' });
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
+  async delete(req, res) {
+    try {
+      const response = await TasksModel.deleteOne({ _id: req.params.id });
+      if (!response.n) return res.status(404).json({ error: 'Task not found' });
       return res.status(200).json(response);
     } catch (error) {
       return res.status(500).json({ error: error.message });
