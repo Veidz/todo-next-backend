@@ -1,3 +1,4 @@
+const { startOfDay, endOfDay } = require('date-fns');
 const TasksModel = require('../models/tasks');
 
 const currentDate = new Date();
@@ -30,7 +31,7 @@ class TasksController {
     try {
       const response = await TasksModel.find({
         macaddress: req.body.macaddress,
-      }).sort('when');
+      }).sort({ when: 1 });
       return res.status(200).json(response);
     } catch (error) {
       return res.status(500).json({ error: error.message });
@@ -78,6 +79,20 @@ class TasksController {
           { macaddress: req.body.macaddress },
         ],
       });
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
+  async today(req, res) {
+    try {
+      const response = await TasksModel.find({
+        $and: [
+          { when: { $gte: startOfDay(currentDate), $lt: endOfDay(currentDate) } },
+          { macaddress: req.body.macaddress },
+        ],
+      }).sort({ when: 1 });
       return res.status(200).json(response);
     } catch (error) {
       return res.status(500).json({ error: error.message });
