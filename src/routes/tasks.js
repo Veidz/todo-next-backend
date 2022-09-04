@@ -16,5 +16,6 @@ router.get('/filter/late', MacAddressValidation, tasksController.late);
 router.get('/filter/today', MacAddressValidation, tasksController.today);
 router.get('/filter/week', MacAddressValidation, tasksController.week);
 router.get('/filter/month', MacAddressValidation, tasksController.month);
+router.get('/filter/year', MacAddressValidation, tasksController.year);
 
 module.exports = router;

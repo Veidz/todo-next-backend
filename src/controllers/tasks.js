@@ -1,5 +1,5 @@
 const {
-  startOfDay, endOfDay, startOfWeek, endOfWeek, startOfMonth, endOfMonth,
+  startOfDay, endOfDay, startOfWeek, endOfWeek, startOfMonth, endOfMonth, startOfYear, endOfYear,
 } = require('date-fns');
 const TasksModel = require('../models/tasks');
 
@@ -120,6 +120,20 @@ class TasksController {
       const response = await TasksModel.find({
         $and: [
           { when: { $gte: startOfMonth(currentDate), $lt: endOfMonth(currentDate) } },
+          { macaddress: req.body.macaddress },
+        ],
+      }).sort({ when: 1 });
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
+  async year(req, res) {
+    try {
+      const response = await TasksModel.find({
+        $and: [
+          { when: { $gte: startOfYear(currentDate), $lt: endOfYear(currentDate) } },
           { macaddress: req.body.macaddress },
         ],
       }).sort({ when: 1 });
