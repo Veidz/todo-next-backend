@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const TaskController = require('../controllers/task');
-const TaskValidation = require('../middlewares/task-validation');
+const TaskController = require('../controllers/tasks');
+const TaskValidation = require('../middlewares/tasks-validation');
 
 const taskController = new TaskController();
 

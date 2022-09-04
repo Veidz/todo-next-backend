@@ -1,6 +1,6 @@
 const { isPast } = require('date-fns');
 
-const TaskModel = require('../models/task');
+const TaskModel = require('../models/tasks');
 
 const TaskValidation = async (req, res, next) => {
   const requiredFields = ['macaddress', 'type', 'title', 'description', 'when'];
