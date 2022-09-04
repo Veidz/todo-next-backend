@@ -1,6 +1,4 @@
-const mongoose = require('../config/database');
-
-const { Schema } = mongoose;
+import { Schema, model } from 'mongoose'
 
 const TasksSchema = new Schema({
   macaddress: { type: String, required: true },
@@ -9,7 +7,7 @@ const TasksSchema = new Schema({
   description: { type: String, required: true },
   when: { type: Date, required: true },
   done: { type: Boolean, default: false },
-  created: { type: Date, default: Date.now() },
-});
+  created: { type: Date, default: Date.now() }
+})
 
-module.exports = mongoose.model('Tasks', TasksSchema);
+export default model('Tasks', TasksSchema)
