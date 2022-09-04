@@ -23,6 +23,17 @@ class TaskController {
       return res.status(500).json({ error: error.message });
     }
   }
+
+  async findAll(req, res) {
+    try {
+      const response = await TaskModel.find({
+        macaddres: req.body.macaddres,
+      }).sort('when');
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
 }
 
 module.exports = TaskController;

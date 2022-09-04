@@ -21,14 +21,14 @@ const TaskValidation = async (req, res, next) => {
       $and: [
         { _id: { $ne: req.params.id } },
         { when: new Date(req.body.when) },
-        { macaddress: { $in: req.body.macaddress } },
+        { macaddress: req.body.macaddress },
       ],
     });
   } else {
     taskDateExists = await TaskModel.findOne({
       $and: [
         { when: new Date(req.body.when) },
-        { macaddress: { $in: req.body.macaddress } },
+        { macaddress: req.body.macaddress },
       ],
     });
   }
