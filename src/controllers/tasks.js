@@ -1,5 +1,7 @@
 const TasksModel = require('../models/tasks');
 
+const currentDate = new Date();
+
 class TasksController {
   async create(req, res) {
     try {
@@ -27,7 +29,7 @@ class TasksController {
   async findAll(req, res) {
     try {
       const response = await TasksModel.find({
-        macaddres: req.body.macaddres,
+        macaddress: req.body.macaddress,
       }).sort('when');
       return res.status(200).json(response);
     } catch (error) {
@@ -62,6 +64,20 @@ class TasksController {
         { done: req.params.done },
         { new: true },
       );
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
+  async late(req, res) {
+    try {
+      const response = await TasksModel.find({
+        $and: [
+          { when: { $lt: currentDate } },
+          { macaddress: req.body.macaddress },
+        ],
+      });
       return res.status(200).json(response);
     } catch (error) {
       return res.status(500).json({ error: error.message });

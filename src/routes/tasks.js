@@ -12,5 +12,6 @@ router.get('/filter/all', MacAddressValidation, tasksController.findAll);
 router.get('/:id', tasksController.findOne);
 router.delete('/:id', tasksController.delete);
 router.put('/:id/:done', tasksController.done);
+router.get('/filter/late', MacAddressValidation, tasksController.late);
 
 module.exports = router;
