@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const {
   startOfDay, endOfDay, startOfWeek, endOfWeek, startOfMonth, endOfMonth, startOfYear, endOfYear,
 } = require('date-fns');
@@ -32,7 +33,7 @@ class TasksController {
   async findAll(req, res) {
     try {
       const response = await TasksModel.find({
-        macaddress: req.body.macaddress,
+        macaddress: req.params.macaddress,
       }).sort({ when: 1 });
       return res.status(200).json(response);
     } catch (error) {
@@ -78,7 +79,7 @@ class TasksController {
       const response = await TasksModel.find({
         $and: [
           { when: { $lt: currentDate } },
-          { macaddress: req.body.macaddress },
+          { macaddress: req.params.macaddress },
         ],
       });
       return res.status(200).json(response);
@@ -92,7 +93,7 @@ class TasksController {
       const response = await TasksModel.find({
         $and: [
           { when: { $gte: startOfDay(currentDate), $lt: endOfDay(currentDate) } },
-          { macaddress: req.body.macaddress },
+          { macaddress: req.params.macaddress },
         ],
       }).sort({ when: 1 });
       return res.status(200).json(response);
@@ -106,7 +107,7 @@ class TasksController {
       const response = await TasksModel.find({
         $and: [
           { when: { $gte: startOfWeek(currentDate), $lt: endOfWeek(currentDate) } },
-          { macaddress: req.body.macaddress },
+          { macaddress: req.params.macaddress },
         ],
       }).sort({ when: 1 });
       return res.status(200).json(response);
@@ -120,7 +121,7 @@ class TasksController {
       const response = await TasksModel.find({
         $and: [
           { when: { $gte: startOfMonth(currentDate), $lt: endOfMonth(currentDate) } },
-          { macaddress: req.body.macaddress },
+          { macaddress: req.params.macaddress },
         ],
       }).sort({ when: 1 });
       return res.status(200).json(response);
@@ -134,7 +135,7 @@ class TasksController {
       const response = await TasksModel.find({
         $and: [
           { when: { $gte: startOfYear(currentDate), $lt: endOfYear(currentDate) } },
-          { macaddress: req.body.macaddress },
+          { macaddress: req.params.macaddress },
         ],
       }).sort({ when: 1 });
       return res.status(200).json(response);
