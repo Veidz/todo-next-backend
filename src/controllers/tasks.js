@@ -34,6 +34,16 @@ class TaskController {
       return res.status(500).json({ error: error.message });
     }
   }
+
+  async findOne(req, res) {
+    try {
+      const response = await TaskModel.findById(req.params.id);
+      if (!response) return res.status(404).json({ error: 'Task not found' });
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
 }
 
 module.exports = TaskController;
