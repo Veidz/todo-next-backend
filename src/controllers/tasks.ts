@@ -4,7 +4,7 @@ import {
 } from 'date-fns'
 
 import TasksModel from '../models/tasks'
-import { Controller } from '../protocols/controller'
+import { Controller } from '../protocols'
 
 const currentDate: Date = new Date()
 

@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose'
-import { Tasks } from '../protocols/tasks'
+import { Tasks } from '../protocols'
 
 const TasksSchema = new Schema<Tasks>({
   macaddress: { type: String, required: true },
