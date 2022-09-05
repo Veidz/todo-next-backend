@@ -2,10 +2,9 @@
   "name": "todo-next-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "sucrase-node src/server.ts",
-    "start:dev": "nodemon src/server.js"
+    "start:dev": "nodemon src/server.ts"
   },
   "keywords": [],
   "author": "Veidz",
