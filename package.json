@@ -1,7 +1,7 @@
 {
   "name": "todo-next-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Tasks manager Node API, using TypeScript, Express, MongoDB and Mongoose ODM",
   "scripts": {
     "start": "sucrase-node src/server.ts",
     "start:dev": "nodemon src/server.ts"
