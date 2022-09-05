@@ -51,7 +51,7 @@ class TasksController {
     }
   }
 
-  async delete (req: Request, res: Response): Promise<Response> {
+  public async delete (req: Request, res: Response): Promise<Response> {
     try {
       const response = await TasksModel.deleteOne({ _id: req.params.id })
       if (!response.deletedCount) return res.status(404).json({ error: 'Task not found' })
