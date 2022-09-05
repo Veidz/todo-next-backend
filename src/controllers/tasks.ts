@@ -4,10 +4,11 @@ import {
 } from 'date-fns'
 
 import TasksModel from '../models/tasks'
+import { Controller } from '../protocols/controller'
 
 const currentDate: Date = new Date()
 
-class TasksController {
+class TasksController implements Controller {
   public async create (req: Request, res: Response): Promise<Response> {
     try {
       const task = await TasksModel.create(req.body)
