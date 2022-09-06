@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 
-import tasksRouter from '../routes/tasks'
+import taskRouter from '../routes/task'
 
 class App {
   public express: express.Application
@@ -25,7 +25,7 @@ class App {
   }
 
   private routes (): void {
-    this.express.use('/tasks', tasksRouter)
+    this.express.use('/task', taskRouter)
   }
 }
 

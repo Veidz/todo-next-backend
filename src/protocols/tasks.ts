@@ -1,4 +1,4 @@
-export interface Tasks{
+export interface Task {
   macaddress: String
   type: Number
   title: String

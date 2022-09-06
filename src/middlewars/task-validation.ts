@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express'
 import { isPast } from 'date-fns'
 
-import TasksModel from '../models/tasks'
+import TaskModel from '../models/task'
 
-const TasksValidation = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+const TaskValidation = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   const requiredFields = ['macaddress', 'type', 'title', 'description', 'when']
 
   for (const field of requiredFields) {
@@ -18,7 +18,7 @@ const TasksValidation = async (req: Request, res: Response, next: NextFunction):
 
   let taskDateExists: boolean
   if (req.params.id) {
-    taskDateExists = await TasksModel.findOne({
+    taskDateExists = await TaskModel.findOne({
       $and: [
         { _id: { $ne: req.params.id } },
         { when: new Date(req.body.when) },
@@ -26,7 +26,7 @@ const TasksValidation = async (req: Request, res: Response, next: NextFunction):
       ]
     })
   } else {
-    taskDateExists = await TasksModel.findOne({
+    taskDateExists = await TaskModel.findOne({
       $and: [
         { when: new Date(req.body.when) },
         { macaddress: req.body.macaddress }
@@ -41,4 +41,4 @@ const TasksValidation = async (req: Request, res: Response, next: NextFunction):
   return next()
 }
 
-export { TasksValidation }
+export { TaskValidation }

@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
-import { Tasks } from '../protocols'
+import { Task } from '../protocols'
 
-const TasksSchema = new Schema<Tasks>({
+const TaskSchema = new Schema<Task>({
   macaddress: { type: String, required: true },
   type: { type: Number, required: true },
   title: { type: String, required: true },
@@ -11,4 +11,4 @@ const TasksSchema = new Schema<Tasks>({
   created: { type: Date, default: Date.now() }
 })
 
-export default model('Tasks', TasksSchema)
+export default model('Task', TaskSchema)
