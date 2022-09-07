@@ -12,10 +12,6 @@ const TaskValidation = async (req: Request, res: Response, next: NextFunction): 
     }
   }
 
-  if (isPast(new Date(req.body.when))) {
-    return res.status(400).json({ error: 'Date cannot be in the past' })
-  }
-
   let taskDateExists: boolean
   if (req.params.id) {
     taskDateExists = await TaskModel.findOne({
@@ -26,6 +22,9 @@ const TaskValidation = async (req: Request, res: Response, next: NextFunction): 
       ]
     })
   } else {
+    if (isPast(new Date(req.body.when))) {
+      return res.status(400).json({ error: 'Date cannot be in the past' })
+    }
     taskDateExists = await TaskModel.findOne({
       $and: [
         { when: new Date(req.body.when) },
