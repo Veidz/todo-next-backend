@@ -1,0 +1,5 @@
+build:
+  docker:
+    back-end: Dockerfile
+run:
+  back-end: node index.js
