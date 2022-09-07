@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Tasks manager Node API, using TypeScript, Express, MongoDB and Mongoose ODM",
   "scripts": {
-    "start": "sucrase-node src/server.ts",
+    "start": "ts-node src/server.ts",
     "start:dev": "nodemon src/server.ts"
   },
   "keywords": [],
