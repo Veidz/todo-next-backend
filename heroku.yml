@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: /bin/sh -c node\ dist/server.js
+  web: node dist/server.js
